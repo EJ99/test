@@ -72,6 +72,7 @@ To make new array from array
 
 Loops
 
+```ruby
 def get_name   
   name = ""   
     loop do     
@@ -85,6 +86,7 @@ def get_name
   end   
   return name
 end  
+```
 
 name = get_name()
 puts "Hi #{name}."
