@@ -70,6 +70,31 @@ To make new array from array
 *	New array = Grocery_list.slice(0,3)
 *	But original array will remain the same
 
+## Hashes
+*	Hashes are like arrays but don’t use numbers as identifiers
+* Instead the identifier can be number, symbols, or strings
+
+Item = { “name” => “bread, “quantity” => 1}
+
+* Add key value to the hash
+
+Item[:brand] = ‘baked’
+Item[“brand”] = “baked”
+Item.store(“calories”, 200)
+
+* To get the value of a key
+
+Item.fetch(“quantity”)  #returns 1
+
+### Hash values
+* Item.values will return all the values of the has in an array
+*	Item.values_at(“brand”, “quantity”)
+*	Item.invert – switches keys with values
+
+### Hash merge
+* Item.merge({‘calories’ => 100})
+* Merges two hashes together
+
 ## Loops
 
 ```ruby
@@ -129,30 +154,63 @@ end
 
 ```
 
-## Hashes
-*	Hashes are like arrays but don’t use numbers as identifiers
-* Instead the identifier can be number, symbols, or strings
+### Each with Arrays
 
-Item = { “name” => “bread, “quantity” => 1}
+Instead of using a while loop - we can use the each method to iterate over the individual items in the array:
 
-* Add key value to the hash
+The do...end is called a block. A block is a chunk of code you can pass into a Ruby method. What the each method does is to call your block once for each item in the array, and pass the item into the block as an argument. So the above block prints each item in the array on its own line.
 
-Item[:brand] = ‘baked’
-Item[“brand”] = “baked”
-Item.store(“calories”, 200)
+```ruby
+array = [0, 1, 2, 3, 4, 5]
 
-* To get the value of a key
+array.each do |item|
+  puts "The current array part is: #{item}"
+end
 
-Item.fetch(“quantity”)  #returns 1
 
-### Hash values
-* Item.values will return all the values of the has in an array
-*	Item.values_at(“brand”, “quantity”)
-*	Item.invert – switches keys with values
+```
 
-### Hash merge
-* Item.merge({‘calories’ => 100})
-* Merges two hashes together
+We can also manipulate items inside of an each block. NOTE: This will leave the original array unchanged.
+
+```ruby
+array = [0, 1, 2, 3, 4, 5]
+array.each do |item|
+  item = item + 2
+  puts "The current item + 2 is #{item}."
+end
+```
+
+### Each with Hashes
+
+```ruby
+  business = { "name" => "Treehouse", "location" => "Portland, OR" }
+```
+
+We can work with each key and value using the each method, which takes two arguments. We separate arguments to blocks using a comma, just like method arguments:
+
+```ruby
+business.each do |key, value|
+  puts "The hash key is #{key} and the value is #{value}."
+end
+```
+
+The each method is aliased as each_pair. We can iterate over hash keys using the each_key method, which takes one argument:
+
+```ruby
+business.each_key do |key|
+  puts "Key: #{key}"
+end
+
+```
+
+The same thing applies to values using the each_value method, which also takes one argument:
+
+```ruby
+business.each_value do |value|
+  puts "Value: #{value}"
+end
+```
+
 
 ## Classes
 *	A class is a way to take a grouping of functions and data and place them inside a container so you can access them with the . (dot) operator.
