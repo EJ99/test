@@ -1,13 +1,13 @@
-Ruby
+# Ruby
 
 •	Most things in ruby are objects
 •	OOP programming style
 
-In the RB file:
-
+```ruby
 print “Please enter your name: “
 name = gets
 puts “Hello #{name + lastname}! Age is #{5 + age)”
+```
 
 •	Use \n to push output onto the next line
 •	Use \t to push a tab in the output
@@ -19,7 +19,7 @@ puts “Hello #{name + lastname}! Age is #{5 + age)”
 •	But if you do variable.upcase! with an exclamation mark you are changing that original variable for good
 •	To find out the type of value in ruby - Variable.class
 
-Methods
+## Methods
 
 def method_name
 
@@ -39,7 +39,7 @@ add(7, 2)
 adding 7 and 2:
 11
 
-Arrays
+## Arrays
 
 •	Check what’s in array
 •	Puts grocery_list.inspect
@@ -70,7 +70,7 @@ To make new array from array
 •	New array = Grocery_list.slice(0,3)
 •	But original array will remain the same
 
-Loops
+## Loops
 
 ```ruby
 def get_name   
@@ -91,10 +91,45 @@ end
 name = get_name()
 puts "Hi #{name}."
 
-While loop
-answer = "" while answer != "n"   print "Do you want me to repeat this pointless loop again? (y/n) "   answer = gets.chomp.downcase end
+### while loop
 
-Hashes
+```ruby
+While loop
+answer = "" while answer != "n"   
+print "Do you want me to repeat this pointless loop again? (y/n) "   
+answer = gets.chomp.downcase end
+```
+
+### until loop
+
+```ruby
+answer = ""
+until answer == "no" do
+  print "Do you want this loop to continue? (y/n) "
+  answer = gets.chomp
+end
+```
+
+
+```ruby
+def print_hello(number_of_times)
+  i = 0
+  while i < number_of_times
+    puts "hello"
+    i += 1
+  end
+end
+
+answer = 0
+until answer >= 5
+  print "How many times do you want to print 'hello'? Enter a number greater than 5 to exit) "
+  answer = gets.chomp.to_i
+  print_hello(answer)
+end
+
+```
+
+## Hashes
 •	Hashes are like arrays but don’t use numbers as identifiers
 •	Instead the identifier can be number, symbols, or strings
 
@@ -110,16 +145,16 @@ Item.store(“calories”, 200)
 
 Item.fetch(“quantity”)  #returns 1
 
-Hash values
+### Hash values
 •	Item.values will return all the values of the has in an array
 •	Item.values_at(“brand”, “quantity”)
 •	Item.invert – switches keys with values
 
-Hash merge
+### Hash merge
 •	Item.merge({‘calories’ => 100})
 •	Merges two hashes together
 
-Classes
+## Classes
 •	A class is a way to take a grouping of functions and data and place them inside a container so you can access them with the . (dot) operator.
 •	Are like a blueprint
 •	string = String.new
