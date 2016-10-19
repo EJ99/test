@@ -9,15 +9,22 @@ name = gets
 puts “Hello #{name + lastname}! Age is #{5 + age)”
 ```
 
-•	Use \n to push output onto the next line
-•	Use \t to push a tab in the output
-•	Use \s to create a space
-•	Variable.upcase
-•	Variable.downcase
-•	Variable.reverse.downcase
-•	If you use a method on a variable – generally the variable won’t change and you will just get a new return value
-•	But if you do variable.upcase! with an exclamation mark you are changing that original variable for good
-•	To find out the type of value in ruby - Variable.class
+## Variables
+
+```ruby
+puts "if i add #{my_age}, #{my_height}, and #{my_weight} i get #{my_age + my_height + my_weight}."
+```
+if i add 35, 74, and 180 i get 289.
+
+*	Use \n to push output onto the next line
+*	Use \t to push a tab in the output
+*	Use \s to create a space
+*	Variable.upcase
+*	Variable.downcase
+*	Variable.reverse.downcase
+*	If you use a method on a variable – generally the variable won’t change and you will just get a new return value
+*	But if you do variable.upcase! with an exclamation mark you are changing that original variable for good
+*	To find out the type of value in ruby - Variable.class
 
 ## Methods
 
@@ -25,10 +32,10 @@ def method_name
 
 end
 
-•	Don’t have to return something but they can
-•	Have to call methods
-•	Call methods by just writing the name
-•	Pass an argument as below
+* Don’t have to return something but they can
+*	Have to call methods
+*	Call methods by just writing the name
+*	Pass an argument as below
 
 def add(x, y)
 	puts “adding #{x) and #{y}:”
