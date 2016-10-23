@@ -9,6 +9,9 @@ name = gets
 puts “Hello #{name + lastname}! Age is #{5 + age)”
 ```
 
+* puts will force a line break
+* print will not
+
 ## Variables
 
 ```ruby
@@ -26,7 +29,73 @@ if i add 35, 74, and 180 i get 289.
 *	But if you do variable.upcase! with an exclamation mark you are changing that original variable for good
 *	To find out the type of value in ruby - Variable.class
 
+##If/Else/Unless
+
+hungry = false
+
+unless hungry
+  puts "I'm writing Ruby programs!"
+else
+  puts "Time to eat!"
+end
+
+
+```ruby
+
+print "What do you want to ask?"
+user_input = gets.chomp
+user_input.downcase!
+
+if user_input.include? "s"
+    user_input.gsub!(/s/, "th")
+    puts "you thay it like thith #{user_input}"
+elsif user_input == ""
+    puts "you must say something!"
+else
+    print "There was no s to find!"
+end
+
+
+```
+
 ## Methods
+
+* Methods are summoned using a .. If you have a string, "I love espresso", and take the .length
+* "I love espresso".length # ==> 15
+* If you add an ! to the end of a method it changes the variable permantly you don't need to assign into new variable
+* Make sure to include the ! so that the user's string is modified in-place; otherwise, Ruby will create a copy of user_input and modify that instead.
+
+##String Interpolation
+
+* If you define a variable monkey that's equal to the string "Curious George", and then you have a string that says "I took #{monkey} to the zoo",
+* Ruby will do something called string interpolation and replace the #{monkey} bit with the value of monkey—that is, it will print
+* "I took Curious George to the zoo". We can do the same thing here! For example:
+
+###Method chaining
+
+```ruby
+name = "elizabeth"
+name.downcase.reverse.upcase
+
+print "What's your first name?"
+first_name = gets.chomp
+first_name.capitalize!
+
+#first_name variable will now be permantly changed to capitalized because of the !
+puts "Your name is #{first_name}"
+
+```
+
+###gets
+
+```ruby
+variable_name = gets.chomp
+```
+
+* gets is the Ruby method that gets input from the user.
+* When getting input, Ruby automatically adds a blank line (or newline) after each bit of input; chomp removes that extra line.
+* (Your program will work fine without chomp, but you'll get extra blank lines everywhere.)
+
 
 def method_name
 
@@ -83,11 +152,23 @@ To make new array from array
 
 Item = { “name” => “bread, “quantity” => 1}
 
+* You can create a new hash by:
+* Setting a variable equal to Hash.new creates a new, empty hash;
+* it's the same as setting the variable equal to empty curly braces ({}).
+
+```ruby
+
+my_hash = Hash.new
+
+```
+
 * Add key value to the hash
 
+```ruby
 Item[:brand] = ‘baked’
 Item[“brand”] = “baked”
 Item.store(“calories”, 200)
+```
 
 * To get the value of a key
 
@@ -103,6 +184,20 @@ Item.fetch(“quantity”)  #returns 1
 * Merges two hashes together
 
 ## Loops
+
+* Some languages have the increment operators ++ and -- (which also add or subtract 1 from a value), but Ruby does not.
+* You'll have to make do with += and -=!
+
+```ruby
+i = 0
+loop do
+  i += 1
+  print "#{i}"
+  break if i > 5
+end
+
+```
+
 
 ```ruby
 def get_name   
@@ -127,7 +222,8 @@ puts "Hi #{name}."
 
 ```ruby
 While loop
-answer = "" while answer != "n"   
+answer = ""
+while answer != "n"   
 print "Do you want me to repeat this pointless loop again? (y/n) "   
 answer = gets.chomp.downcase end
 ```
@@ -161,7 +257,33 @@ end
 
 ```
 
-### Each with Arrays
+###For Loop
+
+* Sometimes you do know how many times you'll be looping, however, and when that's the case, you'll want to use a for loop.
+
+```Ruby
+for num in 1...10
+  puts num
+end
+```
+* puts every number from 1 - 9
+
+* The reason Ruby counted to 9 and not 10 was because we used three dots in the range; this tells Ruby to exclude the final number in the count: for num in 1...10 means "go up to but don't include 10."
+* If we use two dots, this tells Ruby to include the highest number in the range
+
+###Next
+
+```ruby
+  i = 20
+  loop do
+  i -= 1
+  next if i % 2 != 0
+  print "#{i}"
+  break if i <= 0
+  end
+```
+
+### Each with Arrays - Use when need to iterate through every item in the array
 
 Instead of using a while loop - we can use the each method to iterate over the individual items in the array:
 
@@ -174,8 +296,27 @@ array.each do |item|
   puts "The current array part is: #{item}"
 end
 
+###OR
+
+array = [1,2,3,4,5]
+
+array.each do |x|
+  x += 10
+  print "#{x}"
+end
+
+### PRINTS 11, 12, 13, 14, 15
 
 ```
+
+### .times method
+
+```ruby
+10.times do
+    print "chunky ham"
+end
+```
+
 
 We can also manipulate items inside of an each block. NOTE: This will leave the original array unchanged.
 
@@ -187,15 +328,43 @@ array.each do |item|
 end
 ```
 
-### Each with Hashes
+### Each with 2D Arrays
+
+* To print a list of items in 2D array
 
 ```ruby
-  business = { "name" => "Treehouse", "location" => "Portland, OR" }
+s = [["ham", "swiss"], ["turkey", "cheddar"], ["roast beef", "gruyere"]]
+
+s.each do |sub_array|
+    sub_array.each do |item|
+        puts item
+    end
+end
+
+
 ```
+
+### Each with Hashes
 
 We can work with each key and value using the each method, which takes two arguments. We separate arguments to blocks using a comma, just like method arguments:
 
 ```ruby
+secret_identities = {
+  "The Batman" => "Bruce Wayne",
+  "Superman" => "Clark Kent",
+  "Wonder Woman" => "Diana Prince",
+  "Freakazoid" => "Dexter Douglas"
+}
+
+secret_identities.each do |f, r|
+    puts "#{f}: #{r}"
+end
+
+```
+
+```ruby
+business = { "name" => "Treehouse", "location" => "Portland, OR" }
+
 business.each do |key, value|
   puts "The hash key is #{key} and the value is #{value}."
 end
